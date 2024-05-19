@@ -22,7 +22,7 @@ export default function RootLayout({
           <div className="z-10 w-full m-0">
             <div className="md:flex md:justify-between bg-white max-h-max">
               <img
-                src="./logo.svg"
+                src="/logo.svg"
                 className="h-16 relative md:mx-10 mx-auto my-auto select-none"
               ></img>
               <Navbar />

@@ -1,6 +1,6 @@
 'use client'
 
-import ImageButton from '../components/button/ImageButton'
+import ImageButton from '@/components/button/ImageButton'
 
 export default function Navbar() {
   const menu = [
