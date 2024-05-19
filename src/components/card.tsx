@@ -9,7 +9,7 @@ interface Props {
 
 export default function Card(){
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-green-900 dark:border-gray-700">
+    <div className="max-w-sm ml-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-green-900 dark:border-gray-700">
       <a href="#">
         <Image className="rounded-t-lg" src={image1} alt="" width={500} height={500}/>
       </a>
