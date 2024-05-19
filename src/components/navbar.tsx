@@ -8,7 +8,7 @@ export default function Navbar() {
     ["Products", "/products","/shopping-bag.svg"],
     ["Pricing", "/pricing","/dollar-sign.svg"],
     ["About", "/about","/info.svg"],
-    ["Sign in", "/login","/user.svg"],
+    ["Login", "/login","/log-in.svg"],
   ];
   return (
     <nav className="relative md:mx-10 mx-auto mt-8 flex justify-center">
