@@ -2,7 +2,7 @@
 
 import Button from "@/components/button/Button";
 import LoginLayout from "@/components/layouts/LoginLayout";
-import { GetRequest } from "@/lib/RequestCommand";
+import { GetRequest, PostRequest } from "@/lib/RequestCommand";
 import { Request } from "@/lib/RequestInterface";
 import RequestManager from "@/lib/requestManager";
 import { userRegisterSchema } from "@/validations/userRegisterSchema";
@@ -24,15 +24,9 @@ export default function Login() {
   } = useForm<Inputs>({
     resolver: zodResolver(userRegisterSchema),
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log("Pasaron los datos:");
     console.log(data);
-    // let usuariosRequest: Request = new GetRequest(
-    //   new RequestManager(),
-    //   "usuarios"
-    // );
-    // const result = usuariosRequest.doRequest();
-    // console.log(result);
   };
   return (
     <LoginLayout>

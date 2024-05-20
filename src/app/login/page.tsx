@@ -2,14 +2,14 @@
 
 import Button from "@/components/button/Button";
 import LoginLayout from "@/components/layouts/LoginLayout";
-import { GetRequest } from "@/lib/RequestCommand";
+import { PostRequest } from "@/lib/RequestCommand";
 import { Request } from "@/lib/RequestInterface";
 import RequestManager from "@/lib/requestManager";
 import { userSchema } from "@/validations/userSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AxiosResponse } from "axios";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 
 type Inputs = {
   user: string;
@@ -24,15 +24,20 @@ export default function Login() {
   } = useForm<Inputs>({
     resolver: zodResolver(userSchema),
   });
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("Pasaron los datos:");
-    console.log(data);
-    // let usuariosRequest: Request = new GetRequest(
-    //   new RequestManager(),
-    //   "usuarios"
-    // );
-    // const result = usuariosRequest.doRequest();
-    // console.log(result);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const usuariosRequest: Request = new PostRequest(
+      new RequestManager(),
+      "usuarios/login",
+      { email: data.user, secret: data.password }
+    );
+    const result = usuariosRequest.doRequest();
+    result.then((response: AxiosResponse) => {
+      if (response.status === 200) {
+        console.log("El usuario es correcto ");
+      } else {
+        console.error("Datos de ingreso erroneos");
+      }
+    });
   };
   return (
     <LoginLayout>
