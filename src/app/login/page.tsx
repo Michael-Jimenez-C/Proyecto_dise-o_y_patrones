@@ -24,7 +24,6 @@ export default function Login() {
   } = useForm<Inputs>({
     resolver: zodResolver(userSchema),
   });
-  console.log(errors);
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log("Pasaron los datos:");
     console.log(data);
