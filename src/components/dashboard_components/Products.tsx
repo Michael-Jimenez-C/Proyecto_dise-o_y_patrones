@@ -13,7 +13,8 @@ export default function Products(){
     let [formStatus, setFormStatus]= useState(true);
     let [editing, setEditing]= useState(true);
     let [name, setName] = useState("");
-    let [location, setLocation] = useState("");
+    let [pcompra, setpcompra] = useState(0);
+    let [pventa, setpventa] = useState(0);
     let [display, setDisplay] = useState(true);
     const handle = async (e:any) => {
         e.preventDefault();
@@ -68,8 +69,12 @@ export default function Products(){
               <input value={name} className="text-green-700 border border-green-700" onChange={(e)=>{setName(e.target.value)}}></input>
             </label>
             <label className="text-green-700">
-              Ubicación<br/>
-              <input value={location} className="text-green-700 border border-green-700" onChange={(e)=>{setLocation(e.target.value)}}></input>
+              Precio de compra<br/>
+              <input type='number' value={pcompra} className="text-green-700 border border-green-700" onChange={(e)=>{setpcompra(e.target.value)}}></input>
+            </label>
+            <label className="text-green-700">
+              Precio de venta<br/>
+              <input type='number' value={pventa} className="text-green-700 border border-green-700" onChange={(e)=>{setpventa(e.target.value)}}></input>
             </label>
             <Button handler={editing? edit:create} className="w-full bg-green-500 hover:bg-green-600 my-4 rounded">ACEPTAR</Button>
         </form>
