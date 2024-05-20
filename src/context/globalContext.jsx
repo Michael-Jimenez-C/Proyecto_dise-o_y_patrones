@@ -1,6 +1,9 @@
 'use client'
 import { createContext, useState, useContext } from "react";
 
+
+
+
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
@@ -19,6 +22,8 @@ export const GlobalProvider = ({ children }) => {
     setCurrInv({});
   };
 
+    
+
   return (
     <GlobalContext.Provider
       value={{
@@ -34,7 +39,7 @@ export const GlobalProvider = ({ children }) => {
         setCurrInv,
         activeMenu,
         setActive,
-        resetSession
+        resetSession,
       }}
     >
       {children}

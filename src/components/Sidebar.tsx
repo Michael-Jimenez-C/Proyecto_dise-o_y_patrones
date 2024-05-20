@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import SideBarButton from "@/components/button/SideBarButton"
+import {useGlobalContext} from "@/context/globalContext"
 
 export default function SideBar() {
   let [state, setstate] = useState(0);
@@ -8,23 +9,28 @@ export default function SideBar() {
     setstate(state == 0 ? 1 : 0);
   };
 
+  const {setActive} = useGlobalContext();
+
   let navigation = [
     [
       "/archive.svg",
       "Inventarios",
       () => {
+        setActive('Inventarios')
       },
     ],
     [
       "/package.svg",
       "Productos",
       () => {
+        setActive('Productos')
       },
     ],
     [
       "/book-open.svg",
       "Ver inventario",
       () => {
+        setActive('Inventaros_contenido')
       },
     ]
   ];
