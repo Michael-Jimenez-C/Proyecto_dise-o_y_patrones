@@ -1,6 +1,8 @@
+"use client";
+
 import Navbar from "@/components/navbar";
 import Card from "@/components/card";
-import {useGlobalContext} from "@/context/globalContext"
+import { useGlobalContext } from "@/context/globalContext";
 
 export default function Dashboard() {
   const {user, setOrg} = useGlobalContext();
