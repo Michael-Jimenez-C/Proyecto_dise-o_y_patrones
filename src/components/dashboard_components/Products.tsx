@@ -14,23 +14,39 @@ export default function Products(){
     let [editing, setEditing]= useState(true);
     let [name, setName] = useState("");
     let [location, setLocation] = useState("");
-
+    let [display, setDisplay] = useState(true);
     const handle = async (e:any) => {
         e.preventDefault();
         const data = await prodFetch(1);
         console.log(data)
-        setDataShow(<Table kind='products' data={data} 
-          handler={(id:number)=>{
-          }}
-          handlerDelete={(id:number)=>{
-            console.log(id)
-          }} 
-          handlerEdit={(id:number)=>{
-            
-          }}/>
-        );
-      };
+        const dthandler = (id:number)=>{
+        }
+        const delHandler = (id:number)=>{
+          console.log(id)
+        }
 
+        const edHandler = (id:number)=>{
+            
+        }
+        if (display){  
+          setDataShow(<Table kind='products' data={data} 
+            handler={dthandler}
+            handlerDelete={delHandler}
+            handlerEdit={edHandler}/>
+          );
+        }else{
+          setDataShow(<List kind='products' data={data} 
+            handler={dthandler}
+            handlerDelete={delHandler}
+            handlerEdit={edHandler}/>
+          );
+        }
+      };
+    
+    const handleViewChange = async (e:any)=>{
+        setDisplay(!display);
+        handle(e);
+    }
 
     const edit = ()=>{
 
@@ -41,6 +57,7 @@ export default function Products(){
     
     return(<>
     <Button className="bg-green-500 my-4 rounded hover:bg-green-600 text-white" handler={handle}>Cargar</Button>
+    <Button className="bg-green-500 my-4 rounded hover:bg-green-600 text-white" handler={handleViewChange}>Cambiar vista</Button>
     {dataShow}
     <div className="w-4/5">
       <CircleButton className={"p-4 "+ (formStatus? "bg-green-500":"bg-rose-500 rotate-45")} imageClassName="" onClick={()=>{setFormStatus(!formStatus)}} src="/plus.svg"></CircleButton>
