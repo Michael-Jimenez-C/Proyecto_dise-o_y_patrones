@@ -10,6 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useGlobalContext } from "@/context/globalContext";
+import { useRouter } from 'next/navigation'
 
 type Inputs = {
   user: string;
@@ -17,6 +19,8 @@ type Inputs = {
 };
 
 export default function Login() {
+  const router = useRouter()
+  const { setIsLogged, setUser, user} = useGlobalContext();
   const {
     register,
     handleSubmit,
@@ -33,7 +37,10 @@ export default function Login() {
     const result = usuariosRequest.doRequest();
     result.then((response: AxiosResponse) => {
       if (response.status === 200) {
+        setIsLogged(true);
+        setUser(response.data)
         console.log("El usuario es correcto ");
+        router.push('/dashboard')
       } else {
         console.error("Datos de ingreso erroneos");
       }
