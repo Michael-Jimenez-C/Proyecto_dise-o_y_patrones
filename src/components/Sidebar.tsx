@@ -23,7 +23,7 @@ export default function SideBar() {
     ],
     [
       "/book-open.svg",
-      "Productos en inventario",
+      "Ver inventario",
       () => {
       },
     ]
@@ -37,9 +37,9 @@ export default function SideBar() {
           (state == 1 ? "animation-expand w-64" : "w-12")
         }
       >
-        <SideBarButton className="px-0 w-full" handler={(e)=>{cambiar_estado(state)}} src={state == 1 ? "/x.svg" : "/menu.svg"}>{state == 1 ?  "Menu" : ""}</SideBarButton>
+        <SideBarButton className={`px-0 w-full ${state == 1 ? "bg-rose-200" : ""}`} imageClassName="" handler={(e)=>{cambiar_estado(state)}} src={state == 1 ? "/x.svg" : "/menu.svg"}>{state == 1 ?  "Menu" : ""}</SideBarButton>
         {navigation.map((dato, i) => (
-          <SideBarButton className="px-0 w-full" handler={dato[2]} src={dato[0]}>{state == 1 ? dato[1] : ""}</SideBarButton>
+          <SideBarButton className="px-0 w-full" imageClassName="" handler={dato[2]} src={dato[0]}>{state == 1 ? dato[1] : ""}</SideBarButton>
         ))}
       </div>
     </>
