@@ -9,8 +9,8 @@ export default class OrganizationProxyService implements ServiceInterface {
         this.realOrganizationService = new RealOrganizationService();
     }
 
-    getById(organizationId: number) {
-        const Organization = this.realOrganizationService.getById(organizationId);
+    getAll() {
+        const Organization = this.realOrganizationService.getAll();
         return Organization;
     }
 }
