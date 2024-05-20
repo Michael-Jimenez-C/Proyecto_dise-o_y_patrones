@@ -20,7 +20,7 @@ type Inputs = {
 
 export default function Login() {
   const router = useRouter()
-  const { setIsLogged, setUser, user} = useGlobalContext();
+  const { setIsLogged, setUser} = useGlobalContext();
   const {
     register,
     handleSubmit,
