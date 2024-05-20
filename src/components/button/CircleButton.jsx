@@ -1,3 +1,4 @@
+import Button from "./Button";
 export default function CircleButton({
   src,
   className,
@@ -5,18 +6,18 @@ export default function CircleButton({
   imageClassName,
 }) {
   return (
-    <button
+    <Button
       className={
-        "flex text-white gap-2 justify-center items-center px-4 rounded-full p-2 hover:scale-105 animation-all duration-300 " +
+        "flex text-white gap-2 justify-center items-center py-4 md:px-4 rounded-full hover:scale-105 animation-all duration-300 " +
         className
       }
-      onClick={onClick}
+      handler={onClick}
     >
       <img
         alt=""
         src={src}
         className={"invert " + (imageClassName ?? "")}
       ></img>
-    </button>
+    </Button>
   );
 }
