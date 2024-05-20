@@ -1,12 +1,13 @@
 'use client'
 import { useGlobalContext } from "@/context/globalContext";
 import Button from "../button/Button";
-import invFetch from "@/lib/dashboard/invFetch"
+import prodFetch from "@/lib/dashboard/prodFetch"
 import { useState } from "react";
 import List from '@/components/dataShow/List'
+import Table from "../dataShow/Table";
 import CircleButton from "../button/CircleButton";
 
-export default function Inventories(){
+export default function Products(){
     const {currentinv, setCurrInv, setActive} = useGlobalContext();
     let [dataShow, setDataShow]= useState(<div></div>);
     let [formStatus, setFormStatus]= useState(true);
@@ -16,11 +17,10 @@ export default function Inventories(){
 
     const handle = async (e:any) => {
         e.preventDefault();
-        const data = await invFetch(1);
-        setDataShow(<List data={data} 
+        const data = await prodFetch(1);
+        console.log(data)
+        setDataShow(<Table kind='products' data={data} 
           handler={(id:number)=>{
-            setCurrInv(id)
-            setActive('Inventaros_contenido')
           }}
           handlerDelete={(id:number)=>{
             console.log(id)
