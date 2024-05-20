@@ -17,7 +17,7 @@ export default function Inventories(){
     const handle = async (e:any) => {
         e.preventDefault();
         const data = await invFetch(1);
-        setDataShow(<List data={data} 
+        setDataShow(<List kind='inv' data={data} 
           handler={(id:number)=>{
             setCurrInv(id)
             setActive('Inventaros_contenido')
