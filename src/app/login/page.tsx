@@ -1,25 +1,44 @@
 "use client";
 
-import { GetRequest, Request } from "@/lib/command/ICommand";
-import { environment } from "@/lib/environment";
-import RequestManager from "@/lib/requestManager";
-import { useForm } from "react-hook-form";
-import LoginLayout from "@/components/layouts/LoginLayout";
-import Link from "next/link";
 import Button from "@/components/button/Button";
+import LoginLayout from "@/components/layouts/LoginLayout";
+import { GetRequest } from "@/lib/RequestCommand";
+import { Request } from "@/lib/RequestInterface";
+import RequestManager from "@/lib/requestManager";
+import { userSchema } from "@/validations/userSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+
+type Inputs = {
+  user: string;
+  password: string;
+};
 
 export default function Login() {
-  // console.log("BACKEND", environment.BACKEND);
-  let usuariosRequest: Request = new GetRequest(
-    new RequestManager(),
-    "usuarios"
-  );
-  // console.log(usuariosRequest.doRequest());
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: zodResolver(userSchema),
+  });
+  console.log(errors);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log("Pasaron los datos:");
+    console.log(data);
+    // let usuariosRequest: Request = new GetRequest(
+    //   new RequestManager(),
+    //   "usuarios"
+    // );
+    // const result = usuariosRequest.doRequest();
+    // console.log(result);
+  };
   return (
     <LoginLayout>
       <h1 className="text-2xl font-bold mb-6 text-green-700">Iniciar Sesión</h1>
-      <form className="grid">
+      <form className="grid" onSubmit={handleSubmit(onSubmit)}>
         <label className="mb-4">
           <span className="text-green-700">Correo electronico:</span>
           <input
@@ -29,6 +48,9 @@ export default function Login() {
             id="user"
             {...register("user")}
           />
+          {errors.user?.message && (
+            <p className="text-rose-400 text-sm">{errors.user?.message}</p>
+          )}
         </label>
         <label className=" mb-4">
           <span className="text-green-700">Contraseña:</span>
@@ -39,14 +61,13 @@ export default function Login() {
             id="password"
             {...register("password")}
           />
+          {errors.password?.message && (
+            <p className="text-rose-400 text-sm">{errors.password?.message}</p>
+          )}
         </label>
         <Button
           className="bg-green-500 rounded-xl hover:bg-green-600 text-white"
-          handler={handleSubmit((data) => {
-            // console.log(data);
-            const result = usuariosRequest.doRequest();
-            console.log(result);
-          })}
+          handler={() => {}}
         >
           Iniciar Sesión
         </Button>

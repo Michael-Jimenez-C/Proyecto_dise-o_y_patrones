@@ -1,8 +1,5 @@
-import RequestManager from "../requestManager";
-
-interface Request {
-  doRequest(): Promise<any>;
-}
+import { Request } from "./RequestInterface";
+import RequestManager from "./requestManager";
 
 class GetRequest implements Request {
   constructor(private receiver: RequestManager, private endpoint: string) {}
@@ -12,5 +9,4 @@ class GetRequest implements Request {
   }
 }
 
-export type { Request };
 export { GetRequest };
