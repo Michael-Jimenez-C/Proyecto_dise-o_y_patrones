@@ -7,7 +7,7 @@ interface Request {
 class GetRequest implements Request {
   constructor(private receiver: RequestManager, private endpoint: string) {}
   async doRequest() {
-    const result = await this.receiver.get(this.endpoint);
+    const result = this.receiver.get(this.endpoint);
     return result;
   }
 }

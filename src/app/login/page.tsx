@@ -9,12 +9,12 @@ import Link from "next/link";
 import Button from "@/components/button/Button";
 
 export default function Login() {
-  console.log("BACKEND", environment.BACKEND);
+  // console.log("BACKEND", environment.BACKEND);
   let usuariosRequest: Request = new GetRequest(
     new RequestManager(),
     "usuarios"
   );
-  console.log(usuariosRequest.doRequest());
+  // console.log(usuariosRequest.doRequest());
   const { register, handleSubmit } = useForm();
   return (
     <LoginLayout>

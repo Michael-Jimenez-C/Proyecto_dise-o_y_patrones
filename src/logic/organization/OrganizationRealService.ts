@@ -10,13 +10,13 @@ export default class RealOrganizationService implements ServiceInterface{
         const organizationImg = await fetch('https://picsum.photos/id/237/200/300')
         .then(response => {
             if(response.status !== 200){
-                console.log('Hubo un problema: ' + response.status)
+                console.error('Hubo un problema: ' + response.status)
                 return;
             }
             return response.json()
         })
         .then(data => data.drinks[0])
-        .catch(err => console.log(`Fetch error: ${err}`));
+        .catch(err => console.error(`Fetch error: ${err}`));
         return {
             name: "PicOrg",
             workspace: "First",
