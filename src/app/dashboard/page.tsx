@@ -1,18 +1,32 @@
 "use client";
 
-import Navbar from "@/components/navbar";
 import Card from "@/components/card";
-import { useGlobalContext } from "@/context/globalContext";
+
+import OrganizationProxyService from "@/lib/organization/OrganizationProxyService";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
-  const {user, setOrg} = useGlobalContext();
-  return (
-    
-      <div className="h-full flex flex-row justify-between items-center pt-20">
-          <Card />
-          <Card />  
-          <Card />
-      </div>
 
+  const [data, setData] = useState([])
+  const request = new OrganizationProxyService();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await request.getAll()
+        setData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
+    };
+    fetchData(); 
+  },[])
+
+  return (
+      <div className="h-full flex flex-row justify-between items-center pt-20">
+        {data.map((item: { nombre: String; nombreWS: String; }) =>
+          <Card name={item.nombre} workspace={item.nombreWS}/>
+        )}
+      </div>
   );
 }

@@ -1,27 +1,23 @@
-import ServiceInterface from "../ServiceInterface";
-interface Props {
-    name: String; 
-    workspace: String;
-    image: String  
-}
+import { AxiosResponse } from "axios";
+import { GetRequest, PostRequest } from "@/lib/RequestCommand";
+import ServiceInterface from "@/lib/ServiceInterface";
+import RequestManager from "@/lib/requestManager";
+import { Request } from "@/lib/RequestInterface";
 
-export default class RealOrganizationService implements ServiceInterface{
-    async getById(organizationId: number){
-        const organizationImg = await fetch('https://picsum.photos/id/237/200/300')
-        .then(response => {
-            if(response.status !== 200){
-                console.error('Hubo un problema: ' + response.status)
-                return;
-            }
-            return response.json()
-        })
-        .then(data => data.drinks[0])
-        .catch(err => console.error(`Fetch error: ${err}`));
-        return {
-            name: "PicOrg",
-            workspace: "First",
-            image: organizationImg
-        }; 
-    }
+export default class RealOrganizationService implements ServiceInterface {
+  async getAll() {
+    const organizationRequest: Request = new GetRequest(
+      new RequestManager(),
+      "organizacion"
+    );
+    const result = organizationRequest.doRequest();
+    return result.then((response: AxiosResponse) => {
+      if (response.status === 200) {
+        console.log("Consulta correcta");
+        return response.data
+      } else {
+        console.error("Error en la consulta");
+      }
+    });
+  }
 }
-
