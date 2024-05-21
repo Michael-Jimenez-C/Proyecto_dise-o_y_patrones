@@ -61,7 +61,7 @@ export default function Products(){
     <Button className="bg-green-500 my-4 rounded hover:bg-green-600 text-white" handler={handleViewChange}>Cambiar vista</Button>
     {dataShow}
     <div className="w-4/5">
-      <CircleButton className={"p-4 "+ (formStatus? "bg-green-500":"bg-rose-500 rotate-45")} imageClassName="" onClick={()=>{setFormStatus(!formStatus)}} src="/plus.svg"></CircleButton>
+      <CircleButton className={"p-4 duration-300 transition-all "+ (formStatus? "bg-green-500":"bg-rose-500 rotate-45")} imageClassName="" onClick={()=>{setFormStatus(!formStatus)}} src="/plus.svg"></CircleButton>
       <div className={`mx-auto bg-white p-8 rounded-lg shadow-md w-80 shadow-sm shadow-black ${formStatus? "hidden":""}`}>
         <form>
             <label className="text-green-700">
