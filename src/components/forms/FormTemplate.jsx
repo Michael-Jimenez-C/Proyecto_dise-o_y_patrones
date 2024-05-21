@@ -20,4 +20,8 @@ export default class FormTemplate extends React.Component{
         get(){
             return this.product
         }
+
+        render(){
+            return(<></>)
+        }
 }
