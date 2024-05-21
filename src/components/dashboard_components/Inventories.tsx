@@ -5,7 +5,7 @@ import invFetch from "@/lib/dashboard/invFetch"
 import { useState } from "react";
 import List from '@/components/dataShow/List'
 import CircleButton from "../button/CircleButton";
-
+import InvForm from "@/components/forms/InvForm"
 export default function Inventories(){
     const {currentinv, setCurrInv, setActive} = useGlobalContext();
     let [dataShow, setDataShow]= useState(<div></div>);
@@ -46,14 +46,7 @@ export default function Inventories(){
       <CircleButton className={"p-4 "+ (formStatus? "bg-green-500":"bg-rose-500 rotate-45")} imageClassName="" onClick={()=>{setFormStatus(!formStatus)}} src="/plus.svg"></CircleButton>
       <div className={`mx-auto bg-white p-8 rounded-lg shadow-md w-80 shadow-sm shadow-black ${formStatus? "hidden":""}`}>
         <form>
-            <label className="text-green-700">
-              Nombre<br/>
-              <input value={name} className="text-green-700 border border-green-700" onChange={(e)=>{setName(e.target.value)}}></input>
-            </label>
-            <label className="text-green-700">
-              Ubicación<br/>
-              <input value={location} className="text-green-700 border border-green-700" onChange={(e)=>{setLocation(e.target.value)}}></input>
-            </label>
+            <InvForm/>
             <Button handler={editing? edit:create} className="w-full bg-green-500 hover:bg-green-600 my-4 rounded">ACEPTAR</Button>
         </form>
       </div>
