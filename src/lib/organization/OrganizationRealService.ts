@@ -5,7 +5,24 @@ import RequestManager from "@/lib/requestManager";
 import { Request } from "@/lib/RequestInterface";
 
 export default class RealOrganizationService implements ServiceInterface {
-  async getAll() {
+  async create(): Promise<any> {
+    const organizationRequest: Request = new PostRequest(
+      new RequestManager(),
+      "organizacion",
+      {}
+    );
+    const result = organizationRequest.doRequest();
+    return result.then((response: AxiosResponse) => {
+      if (response.status === 200) {
+        console.log("Creación correcta");
+        return response
+      } else {
+        console.error("Error en la creación");
+      }
+    });
+  }
+
+  async getAll(): Promise<any> {
     const organizationRequest: Request = new GetRequest(
       new RequestManager(),
       "organizacion"
@@ -19,5 +36,13 @@ export default class RealOrganizationService implements ServiceInterface {
         console.error("Error en la consulta");
       }
     });
+  }
+
+  async update() {
+    
+  }
+
+  async delete(){
+
   }
 }
