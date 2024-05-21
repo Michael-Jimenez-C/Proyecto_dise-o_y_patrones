@@ -5,6 +5,9 @@ export default class FormTemplate extends React.Component{
         constructor(){
             super({});
         }
+        reset(){
+            this.product = null
+        }
         add(name){
             this.product =(
             <>
